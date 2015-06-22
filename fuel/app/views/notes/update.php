@@ -1,0 +1,1 @@
+<?php echo render('notes/_form'); ?>
