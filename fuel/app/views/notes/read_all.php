@@ -5,7 +5,9 @@
 <?php foreach ($notes as $note): ?>
 
 	<article class='note'>
-		<ul align="right"><a href="/notes/edit/<?php echo $note->id ?>">Edit</a></ul>
+		<ul align="right">
+			<a href="/notes/edit/<?php echo $note->id; ?>">Edit</a>
+		</ul>
 		
 		<h2>
 			<a href="/notes/<?php echo $note->id; ?>"><?php echo $note->title; ?></a>

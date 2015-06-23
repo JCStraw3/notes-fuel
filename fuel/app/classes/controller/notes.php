@@ -80,7 +80,11 @@ class Controller_Notes extends Controller_Template
 
 		$id = $this->param('id');
 
+		// Finds the note in the databas using the id.
+
 		$note = Model_Note::find($id);
+
+		// Saves note to database.
 
 		if (Input::post()){
 			$note->title = Input::post('title');
@@ -92,17 +96,32 @@ class Controller_Notes extends Controller_Template
 			}
 		}
 
+		// Return view.
+
 		$this->template->title = 'Edit a Note';
-		$this->template->content = View::forge('notes/update', array('note' => $note));
+		$this->template->content = View::forge('notes/update');
 
 	}
 
 	// Delete a note.
 
-	public function action_delete(){
+	// THIS IS BROKEN
+	// ROUTING ISSUE?
 
-		$this->template->title = 'Delete';
-		$this->template->content = View::forge('notes/delete');
+	public function action_delete($id){
+
+		// $id = $this.param($id);
+
+		$note = Model_Note::find($id);
+
+		if($note){
+			$note->delete();
+			Session::set_flash('success', 'Deleted note.');
+		} else {
+			Session::set_flash('error', 'Could not delete note.');
+		}
+
+		Response::redirect('notes');
 
 	}
 
