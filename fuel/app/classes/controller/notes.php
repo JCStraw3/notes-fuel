@@ -73,6 +73,7 @@ class Controller_Notes extends Controller_Template
 	}
 
 	// Update a note.
+	// TODO: Find a way to pass existing data to view.
 
 	public function action_update(){
 

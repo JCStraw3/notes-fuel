@@ -13,7 +13,7 @@
 			margin: 20px;
 			padding: 1px;
 			padding-left: 20px;
-			}
+		}
 		.nav{
 			background: #C0C0C0;
 			color: white;
@@ -36,9 +36,17 @@
 
 			<!-- Navigation. -->
 
-			<ul class="nav nav-pills">
+			<ul class="nav nav-pills" align:"left">
 				<li><?php echo Html::anchor('notes', "Notes"); ?></li>
 				<li><?php echo Html::anchor('notes/create', "Create"); ?></li>
+				<li><?php
+				if (isset($user_info)){
+					echo $user_info;
+				} else {
+					$link = array(Html::anchor('login', 'Login'), Html::anchor('register', 'Register'));
+					echo Html::ul($link);
+				}
+				?></li>
 			</ul>
 			<hr />
 
