@@ -92,7 +92,7 @@ class Controller_Notes extends Controller_Template
 
 			if ($note->save()){
 				Session::set_flash('success', 'You have updated the note.');
-				Response::redirect('notes/');
+				Response::redirect('/');
 			}
 		}
 

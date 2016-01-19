@@ -7,6 +7,7 @@ return array(
 	
 	'_root_' => 'notes/read_all',
 	'notes/create' => 'notes/create',
-	'notes/edit/:id' => 'notes/update/',
-	'notes/:id' => 'notes/read_one/',
+	'notes/edit/:id' => 'notes/update',
+	// 'notes/delete/:id' => 'notes/delete',
+	'notes/:id' => 'notes/read_one',
 );
