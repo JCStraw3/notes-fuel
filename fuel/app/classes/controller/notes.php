@@ -35,8 +35,10 @@ class Controller_Notes extends Controller_Template
 
 		// Passes the note to the view.
 
+		$view = View::forge('notes/read_one');
+		$view->set('note', $note);
 		$this->template->title = 'Notes';
-		$this->template->content = View::forge('notes/read_one', array('note' => $note));
+		$this->template->content = $view;
 
 	}
 
@@ -67,8 +69,9 @@ class Controller_Notes extends Controller_Template
 
 		// Return view.
 
+		$view = View::forge('notes/create');
 		$this->template->title = 'Create a Note';
-		$this->template->content = View::forge('notes/create');
+		$this->template->content = $view;
 
 	}
 
