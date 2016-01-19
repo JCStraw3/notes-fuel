@@ -99,8 +99,10 @@ class Controller_Notes extends Controller_Template
 
 		// Return view.
 
+		$view = View::forge('notes/update');
+		$view->set('note', $note);
 		$this->template->title = 'Edit a Note';
-		$this->template->content = View::forge('notes/update');
+		$this->template->content = $view;
 
 	}
 

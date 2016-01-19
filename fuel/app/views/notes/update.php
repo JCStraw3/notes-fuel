@@ -1,3 +1,20 @@
-<!-- TODO: Find a way to show the existing data in the form. -->
+<?php echo Form::open(array("class" => "form-horizontal", "align" => "center")); ?>
 
-<?php echo render('notes/_form'); ?>
+	<fieldset>
+		<div class="form-group">
+			<?php echo Form::label(null, 'title', array('class' => 'control-label')); ?>
+			<?php echo Form::input('title', $note->title, array('placeholder' => 'Title')); ?>
+		</div>
+
+		<div class="form-group">
+			<?php echo Form::label(null, 'body', array('class' => 'control-label')); ?>
+			<?php echo Form::textarea('body', $note->body, array('placeholder' => 'Body')); ?>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label'>&nbsp;</label>
+			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>
+		</div>
+	</fieldset>
+
+<?php echo Form::close(); ?>
