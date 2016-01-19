@@ -110,21 +110,21 @@ class Controller_Notes extends Controller_Template
 	// THIS IS BROKEN
 	// ROUTING ISSUE?
 
-	public function action_delete($id){
+	// public function action_delete(){
 
-		// $id = $this.param($id);
+	// 	$id = $this.param('id');
 
-		$note = Model_Note::find($id);
+	// 	$note = Model_Note::find($id);
 
-		if($note){
-			$note->delete();
-			Session::set_flash('success', 'Deleted note.');
-		} else {
-			Session::set_flash('error', 'Could not delete note.');
-		}
+	// 	if($note){
+	// 		$note->delete();
+	// 		Session::set_flash('success', 'Deleted note.');
+	// 	} else {
+	// 		Session::set_flash('error', 'Could not delete note.');
+	// 	}
 
-		Response::redirect('notes');
+	// 	Response::redirect('/');
 
-	}
+	// }
 
 }
