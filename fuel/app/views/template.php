@@ -37,7 +37,7 @@
 			<!-- Navigation. -->
 
 			<ul class="nav nav-pills" align:"left">
-				<li><?php echo Html::anchor('/', "Notes"); ?></li>
+				<li><?php echo Html::anchor('/notes', "Notes"); ?></li>
 				<li><?php echo Html::anchor('notes/create', "Create"); ?></li>
 				<li><?php
 				if (isset($user_info)){

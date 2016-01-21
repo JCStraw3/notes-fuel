@@ -110,9 +110,6 @@ class Controller_Notes extends Controller_Template
 
 	// Delete a note.
 
-	// THIS IS BROKEN
-	// ROUTING ISSUE?
-
 	// public function action_delete(){
 
 	// 	$id = $this.param('id');

@@ -1,11 +1,13 @@
 <?php
 
 return array(
-	'_404_'   => 'welcome/404',    // The main 404 route
+	'_root_' => 'welcome/index',
+	'_404_'   => 'welcome/404',
 
 	'register' => 'users/register',
+	'login' => 'users/login',
 	
-	'_root_' => 'notes/read_all',
+	'notes' => 'notes/read_all',
 	'notes/create' => 'notes/create',
 	'notes/edit/:id' => 'notes/update',
 	'notes/delete/:id' => 'notes/delete',
