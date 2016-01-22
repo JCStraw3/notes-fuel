@@ -3,9 +3,9 @@
 class Controller_Notes extends Controller_Template
 {
 
-	// Read all notes.
+	// View all notes.
 
-	public function action_read_all(){
+	public function get_read_all(){
 
 		// Find all notes in the database.
 
@@ -20,9 +20,9 @@ class Controller_Notes extends Controller_Template
 
 	}
 
-	// Read one note.
+	// View one note.
 
-	public function action_read_one(){
+	public function get_read_one(){
 
 		// Passes the id from the URL into a variable.
 
@@ -33,7 +33,7 @@ class Controller_Notes extends Controller_Template
 
 		$note = Model_Note::find($id);
 
-		// Passes the note to the view.
+		// Pass the note to the view.
 
 		$view = View::forge('notes/read_one');
 		$view->set('note', $note);
@@ -42,7 +42,19 @@ class Controller_Notes extends Controller_Template
 
 	}
 
-	// Create a note.
+	// View create note.
+
+	public function get_create(){
+
+		// Return view.
+
+		$view = View::forge('notes/create');
+		$this->template->title = 'Create a Note';
+		$this->template->content = $view;
+
+	}
+
+	// Create a note in the database.
 
 	public function action_create(){
 
@@ -66,12 +78,6 @@ class Controller_Notes extends Controller_Template
 			}
 
 		}
-
-		// Return view.
-
-		$view = View::forge('notes/create');
-		$this->template->title = 'Create a Note';
-		$this->template->content = $view;
 
 	}
 

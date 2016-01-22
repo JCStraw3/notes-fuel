@@ -7,8 +7,7 @@ class Controller_Users extends Controller_Template
 
 	// Get register form and show to user.
 
-	public function get_register($fieldset = null, $errors = null)
-	{
+	public function get_register($fieldset = null, $errors = null){
 
 		// Init auth; pass view to variable.
 
@@ -28,6 +27,7 @@ class Controller_Users extends Controller_Template
 		if($errors) $view->set_safe('errors', $errors);
 		$this->template->title = 'Register';
 		$this->template->content = $view;
+		
 	}
 
 	// Post register form data to database.
@@ -50,24 +50,27 @@ class Controller_Users extends Controller_Template
 
 		Session::set_flash('success', 'User created.');
 		Response::redirect('notes');
+
 	}
 
 // Log in a user.
 
-	public function action_login()
-	{
+	public function action_login(){
+
 		$data["subnav"] = array('login'=> 'active' );
 		$this->template->title = 'Users &raquo; Login';
 		$this->template->content = View::forge('users/login', $data);
+
 	}
 
 // Log out a user.
 
-	public function action_logout()
-	{
+	public function action_logout(){
+
 		$data["subnav"] = array('logout'=> 'active' );
 		$this->template->title = 'Users &raquo; Logout';
 		$this->template->content = View::forge('users/logout', $data);
+
 	}
 
 }
