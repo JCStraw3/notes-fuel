@@ -81,7 +81,28 @@ class Controller_Notes extends Controller_Template
 
 	}
 
-	// Update a note.
+	// View update a note.
+
+	public function get_update(){
+
+		// Passes the id from the URL into a variable.
+
+		$id = $this->param('id');
+
+		// Finds the note in the databas using the id.
+
+		$note = Model_Note::find($id);
+
+		// Return view.
+
+		$view = View::forge('notes/update');
+		$view->set('note', $note);
+		$this->template->title = 'Edit a Note';
+		$this->template->content = $view;
+
+	}
+
+	// Update a note in the database.
 
 	public function action_update(){
 
@@ -101,16 +122,9 @@ class Controller_Notes extends Controller_Template
 
 			if ($note->save()){
 				Session::set_flash('success', 'You have updated the note.');
-				Response::redirect('/');
+				Response::redirect('/notes');
 			}
 		}
-
-		// Return view.
-
-		$view = View::forge('notes/update');
-		$view->set('note', $note);
-		$this->template->title = 'Edit a Note';
-		$this->template->content = $view;
 
 	}
 
