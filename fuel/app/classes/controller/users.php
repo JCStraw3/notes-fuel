@@ -40,7 +40,7 @@ class Controller_Users extends Controller_Template
 		$fieldset->repopulate();
 		$result = Model_User::validate_registration($fieldset, Auth::instance());
 
-		// Show error.s
+		// Show errors.
 
 		if($result['e_found']){
 			return $this->get_register($fieldset, $result['errors']);
@@ -49,7 +49,7 @@ class Controller_Users extends Controller_Template
 		// Redirect.
 
 		Session::set_flash('success', 'User created.');
-		Response::redirect('notes');
+		Response::redirect('/notes');
 
 	}
 
