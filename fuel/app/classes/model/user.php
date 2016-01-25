@@ -67,40 +67,47 @@ class Model_User extends Model {
 
 		// Validates the inputed data.
 
-		$val = $form->validation();
-		$val->set_message('required', ':field is a required field');
-		$val->set_message('valid_email', ':field must be a valid email');
-		$val->set_message('match_value', 'The passwords must match');
+		// $val = $form->validation();
+		// $val->set_message('required', ':field is a required field');
+		// $val->set_message('valid_email', ':field must be a valid email');
+		// $val->set_message('match_value', 'The passwords must match');
 
 		// Saves data to database or throws error.
-		
-		if($val->run()){
-			$name = $form->field('name')->get_attribute('value');
-			$email = $form->field('email')->get_attribute('value');
-			$password = $form->field('password')->get_attribute('value');
 
-			try{
-				$user = $auth->create_user($name, $email, $password);
-			} catch(Exception $e) {
-				$error = $e->getMessage();
-			}
+		$name = $form->field('name')->get_attribute('value');
+		$email = $form->field('email')->get_attribute('value');
+		$password = $form->field('password')->get_attribute('value');
 
-			if(isset($user)){
-				$auth->login($name, $password);
-			} else {
-				if(isset($error)){
-					$li = $error;
-				} else {
-					$li = 'Could not create user';
-				}
+		$user = $auth->create_user($name, $email, $password);
 
-				$errors = Html::ul(array($li));
-				return array('e_found' => true, 'errors' => $errors);
-			}
-		} else {
-			$errors = $val->show_errors();
-			return array('e_found' => true, 'errors' => $errors);
-		}
+		// if($val->run()){
+		// 	$name = $form->field('name')->get_attribute('value');
+		// 	$email = $form->field('email')->get_attribute('value');
+		// 	$password = $form->field('password')->get_attribute('value');
+
+		// 	try{
+		// 		$user = $auth->create_user($name, $email, $password);
+		// 	} catch(Exception $e) {
+		// 		$error = $e->getMessage();
+		// 	}
+
+		// 	if(isset($user)){
+		// 		$auth->login($name, $password);
+		// 	} else {
+		// 		if(isset($error)){
+		// 			$li = $error;
+		// 		} else {
+		// 			$li = 'Could not create user';
+		// 		}
+
+		// 		$errors = Html::ul(array($li));
+		// 		return array('e_found' => true, 'errors' => $errors);
+		// 	}
+		// } else {
+		// 	$errors = $val->show_errors();
+		// 	return array('e_found' => true, 'errors' => $errors);
+		// }
+
 	}
 
 }
