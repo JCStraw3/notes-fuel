@@ -67,46 +67,46 @@ class Model_User extends Model {
 
 		// Validates the inputed data.
 
-		// $val = $form->validation();
-		// $val->set_message('required', ':field is a required field');
-		// $val->set_message('valid_email', ':field must be a valid email');
-		// $val->set_message('match_value', 'The passwords must match');
+		$val = $form->validation();
+		$val->set_message('required', ':field is a required field');
+		$val->set_message('valid_email', ':field must be a valid email');
+		$val->set_message('match_value', 'The passwords must match');
 
 		// Saves data to database or throws error.
 
-		$name = $form->field('name')->get_attribute('value');
-		$email = $form->field('email')->get_attribute('value');
-		$password = $form->field('password')->get_attribute('value');
+		if($val->run()){
+			$name = $form->field('name')->get_attribute('value');
+			$email = $form->field('email')->get_attribute('value');
+			$password = $form->field('password')->get_attribute('value');
 
-		$user = $auth->create_user($name, $email, $password);
+			try{
+				$user = $auth->create_user($name, $email, $password);
+			} catch(Exception $e) {
+				$error = $e->getMessage();
+			}
 
-		// if($val->run()){
-		// 	$name = $form->field('name')->get_attribute('value');
-		// 	$email = $form->field('email')->get_attribute('value');
-		// 	$password = $form->field('password')->get_attribute('value');
+			if(isset($user)){
+				$auth->login($name, $password);
+			} else {
+				if(isset($error)){
+					$li = $error;
+				} else {
+					$li = 'Could not create user';
+				}
 
-		// 	try{
-		// 		$user = $auth->create_user($name, $email, $password);
-		// 	} catch(Exception $e) {
-		// 		$error = $e->getMessage();
-		// 	}
+				$errors = Html::ul(array($li));
+				return array('e_found' => true, 'errors' => $errors);
+			}
+		} else {
+			$errors = $val->show_errors();
+			return array('e_found' => true, 'errors' => $errors);
+		}
 
-		// 	if(isset($user)){
-		// 		$auth->login($name, $password);
-		// 	} else {
-		// 		if(isset($error)){
-		// 			$li = $error;
-		// 		} else {
-		// 			$li = 'Could not create user';
-		// 		}
+		// $name = $form->field('name')->get_attribute('value');
+		// $email = $form->field('email')->get_attribute('value');
+		// $password = $form->field('password')->get_attribute('value');
 
-		// 		$errors = Html::ul(array($li));
-		// 		return array('e_found' => true, 'errors' => $errors);
-		// 	}
-		// } else {
-		// 	$errors = $val->show_errors();
-		// 	return array('e_found' => true, 'errors' => $errors);
-		// }
+		// $user = $auth->create_user($name, $email, $password);
 
 	}
 
