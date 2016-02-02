@@ -71,7 +71,6 @@ class Controller_Notes extends Controller_Template
 
 			if ($note and $note->save()){
 				Session::set_flash('success', 'You have created a note.');
-
 				Response::redirect('notes');
 			} else{
 				Session::set_flash('error', 'Could not save note.');
